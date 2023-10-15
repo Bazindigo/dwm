@@ -58,7 +58,14 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]  = { "alacritty", NULL };
+static const char *mediapausecmd[] = { "playerctl", "play-pause", NULL };
+static const char *mediaprevcmd[] = { "playerctl", "previous", NULL };
+static const char *medianextcmd[] = { "playerctl", "next", NULL };
+static const char *mediastopcmd[] = { "playerctl", "stop", NULL };
+static const char *volumeupcmd[] = { "playerctl", "volume", "0.1+", NULL };
+static const char *volumedowncmd[] = { "playerctl", "volume", "0.1-", NULL };
+static const char *volumemutecmd[] = { "playerctl", "volume", "0", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -95,6 +102,16 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+
+	// additional custom keybinds
+	/* modifier     key        					function        argument */
+	{ 0, 			XF86XK_AudioNext, 			spawn, 			{.v = medianextcmd } },
+	{ 0, 			XF86XK_AudioPrev, 			spawn, 			{.v = mediaprevcmd } },
+	{ 0, 			XF86XK_AudioPlay, 			spawn, 			{.v = mediapausecmd } },
+	{ 0, 			XF86XK_AudioStop, 			spawn, 			{.v = mediastopcmd } },
+	{ 0, 			XF86XK_AudioRaiseVolume, 	spawn, 			{.v = volumeupcmd } },
+	{ 0, 			XF86XK_AudioLowerVolume, 	spawn, 			{.v = volumedowncmd } },
+	{ 0, 			XF86XK_AudioMute, 			spawn, 			{.v = volumemutecmd } },
 };
 
 /* button definitions */
