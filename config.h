@@ -66,6 +66,7 @@ static const char *mediastopcmd[] = { "playerctl", "stop", NULL };
 static const char *volumeupcmd[] = { "playerctl", "volume", "0.1+", NULL };
 static const char *volumedowncmd[] = { "playerctl", "volume", "0.1-", NULL };
 static const char *volumemutecmd[] = { "playerctl", "volume", "0", NULL };
+static const char *lockcmd[] = { "loginctl", "lock-session", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -102,6 +103,7 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY|ShiftMask,             XK_l, 	   spawn,          {.v = lockcmd } },
 
 	// additional custom keybinds
 	/* modifier     key        					function        argument */
@@ -130,4 +132,3 @@ static const Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
-
